@@ -200,15 +200,15 @@ static char urgfloatcolor[]              = "#db8fd9";
 
 
 #if RENAMED_SCRATCHPADS_PATCH
-static char scratchselfgcolor[]          = "#FFF7D4";
-static char scratchselbgcolor[]          = "#77547E";
-static char scratchselbordercolor[]      = "#894B9F";
-static char scratchselfloatcolor[]       = "#894B9F";
+static char scratchselfgcolor[]          = "#e5e9f0";
+static char scratchselbgcolor[]          = "#81a1c1";
+static char scratchselbordercolor[]      = "#a3be8c";
+static char scratchselfloatcolor[]       = "#a3be8c";
 
-static char scratchnormfgcolor[]         = "#FFF7D4";
-static char scratchnormbgcolor[]         = "#664C67";
-static char scratchnormbordercolor[]     = "#77547E";
-static char scratchnormfloatcolor[]      = "#77547E";
+static char scratchnormfgcolor[]         = "#e5e9f0";
+static char scratchnormbgcolor[]         = "#81a1c1";
+static char scratchnormbordercolor[]     = "#5e81ac";
+static char scratchnormfloatcolor[]      = "#5e81ac";
 #endif // RENAMED_SCRATCHPADS_PATCH
 
 #if BAR_FLEXWINTITLE_PATCH
@@ -393,7 +393,7 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
     /*"xrdb", "-merge", " -I$HOME" , "~/.Xresources", NULL,*/
-    "feh", "--bg-scale", "Pictures/WallPaper/W1.jpg", NULL,
+    "feh", "--bg-scale", "Pictures/WallPaper/52.png", NULL,
 	"alacritty", NULL,
 	"picom", NULL,
     "flameshot", NULL,
@@ -402,7 +402,7 @@ static const char *const autostart[] = {
 #endif // COOL_AUTOSTART_PATCH
 
 #if RENAMED_SCRATCHPADS_PATCH
-static const char *scratchpadcmd[] = {"s", "st", "-n", "spterm", NULL};
+static const char *scratchpadcmd[] = {"s", "st", "-n", "spnmtui", "-e", "nmtui", NULL};
 #elif SCRATCHPADS_PATCH
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
 static Sp scratchpads[] = {
@@ -494,7 +494,7 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 	RULE(.instance = "anydesk", .tags = 1 << 8)
 	#if RENAMED_SCRATCHPADS_PATCH
-	RULE(.instance = "spterm", .scratchkey = 's', .isfloating = 1)
+	RULE(.instance = "spnmtui", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH
