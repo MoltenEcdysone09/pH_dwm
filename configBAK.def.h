@@ -9,7 +9,7 @@ static const unsigned int borderpx       = 2;   /* border pixel of windows */
 #endif // ROUNDED_CORNERS_PATCH
 static const unsigned int snap           = 32;  /* snap pixel */
 #if SWALLOW_PATCH
-static const int swallowfloating         = 0;   /* 1 means swallow floating windows by default */
+static const int swallowfloating         = 1;   /* 1 means swallow floating windows by default */
 #endif // SWALLOW_PATCH
 #if BAR_TAGPREVIEW_PATCH
 static const int scalepreview            = 4;        /* Tag preview scaling */
@@ -53,12 +53,12 @@ static const int toptab                  = False;               /* False means b
 static const int bar_height              = 0;   /* 0 means derive from font, >= 1 explicit height */
 #endif // BAR_HEIGHT_PATCH
 #if BAR_PADDING_PATCH
-static const int vertpad                 = 10;  /* vertical padding of bar */
-static const int sidepad                 = 10;  /* horizontal padding of bar */
+static const int vertpad                 = 0;  /* vertical padding of bar */
+static const int sidepad                 = 0;  /* horizontal padding of bar */
 #endif // BAR_PADDING_PATCH
 #if BAR_WINICON_PATCH
-#define ICONSIZE 20    /* icon size */
-#define ICONSPACING 5  /* space between icon and title */
+#define ICONSIZE bh    /* icon size */
+#define ICONSPACING (bh -4)  /* space between icon and title */
 #endif // BAR_WINICON_PATCH
 #if FOCUSONCLICK_PATCH
 static const int focusonwheel            = 0;
@@ -84,7 +84,7 @@ static const int statusmon               = 0;
 static const int statusmon               = 'A';
 #endif // BAR_STATUSALLMONS_PATCH | BAR_STATICSTATUS_PATCH
 #if BAR_STATUSPADDING_PATCH
-static const int horizpadbar             = 2;   /* horizontal padding for statusbar */
+static const int horizpadbar             = 0;   /* horizontal padding for statusbar */
 static const int vertpadbar              = 0;   /* vertical padding for statusbar */
 #endif // BAR_STATUSPADDING_PATCH
 #if BAR_STATUSBUTTON_PATCH
@@ -100,9 +100,9 @@ static const char etagf[] = "[%s]";             /* format of an empty tag */
 static const int lcaselbl = 0;                  /* 1 means make tag label lowercase */
 #endif // BAR_TAGLABELS_PATCH
 #if BAR_UNDERLINETAGS_PATCH
-static const unsigned int ulinepad = 5;         /* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke  = 2;     /* thickness / height of the underline */
-static const unsigned int ulinevoffset = 0;     /* how far above the bottom of the bar the line should appear */
+static const unsigned int ulinepad = 3;         /* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke  = 3;     /* thickness / height of the underline */
+static const unsigned int ulinevoffset = 2;     /* how far above the bottom of the bar the line should appear */
 static const int ulineall = 0;                  /* 1 to show underline on all tags, 0 for just the active ones */
 #endif // BAR_UNDERLINETAGS_PATCH
 
@@ -146,10 +146,15 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #if BAR_PANGO_PATCH
 static const char font[]                 = "monospace 10";
 #else
-static const char *fonts[]               = { "RobotoMono Nerd Font Mono:style=Medium:size=13:antialias=true:autohint=true" };
+static const char *fonts[]               = {"RobotoMono Nerd Font Mono:style=Medium:size=13:antialias=true:autohint=true"};
 #endif // BAR_PANGO_PATCH
 static const char dmenufont[]            = "RobotoMono Nerd Font Mono:style=Medium:size=12:antialias=true:autohint=true";
 
+// REPLACED the below code with a C file (include ...) for easier theme cahnging
+//
+#include "themes/nord.h"
+
+/*
 static char c000000[]                    = "#000000"; // placeholder value
 
 static char normfgcolor[]                = "#bbbbbb";
@@ -191,17 +196,19 @@ static char urgfgcolor[]                 = "#bbbbbb";
 static char urgbgcolor[]                 = "#222222";
 static char urgbordercolor[]             = "#ff0000";
 static char urgfloatcolor[]              = "#db8fd9";
+*/
+
 
 #if RENAMED_SCRATCHPADS_PATCH
-static char scratchselfgcolor[]          = "#FFF7D4";
-static char scratchselbgcolor[]          = "#77547E";
-static char scratchselbordercolor[]      = "#894B9F";
-static char scratchselfloatcolor[]       = "#894B9F";
+static char scratchselfgcolor[]          = "#e5e9f0";
+static char scratchselbgcolor[]          = "#81a1c1";
+static char scratchselbordercolor[]      = "#a3be8c";
+static char scratchselfloatcolor[]       = "#a3be8c";
 
-static char scratchnormfgcolor[]         = "#FFF7D4";
-static char scratchnormbgcolor[]         = "#664C67";
-static char scratchnormbordercolor[]     = "#77547E";
-static char scratchnormfloatcolor[]      = "#77547E";
+static char scratchnormfgcolor[]         = "#e5e9f0";
+static char scratchnormbgcolor[]         = "#81a1c1";
+static char scratchnormbordercolor[]     = "#5e81ac";
+static char scratchnormfloatcolor[]      = "#5e81ac";
 #endif // RENAMED_SCRATCHPADS_PATCH
 
 #if BAR_FLEXWINTITLE_PATCH
@@ -241,7 +248,7 @@ static char selfloatbgcolor[]            = "#117799";
 #endif // BAR_FLEXWINTITLE_PATCH
 
 #if BAR_ALPHA_PATCH
-static const unsigned int baralpha = 250;
+static const unsigned int baralpha = 255;
 static const unsigned int borderalpha = 250;
 static const unsigned int alphas[][3] = {
 	/*                       fg      bg        border     */
@@ -385,8 +392,8 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
-    "xrdb", "-merge", " -I$HOME" , "~/.Xresources", NULL,
-    "feh", "--bg-scale", "Pictures/WallPaper/W1.jpg", NULL,
+    /*"xrdb", "-merge", " -I$HOME" , "~/.Xresources", NULL,*/
+    "feh", "--bg-scale", "Pictures/WallPaper/52.png", NULL,
 	"alacritty", NULL,
 	"picom", NULL,
     "flameshot", NULL,
@@ -395,7 +402,7 @@ static const char *const autostart[] = {
 #endif // COOL_AUTOSTART_PATCH
 
 #if RENAMED_SCRATCHPADS_PATCH
-static const char *scratchpadcmd[] = {"s", "st", "-n", "spterm", NULL};
+static const char *scratchpadcmd[] = {"s", "st", "-n", "spnmtui", "-e", "nmtui", NULL};
 #elif SCRATCHPADS_PATCH
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
 static Sp scratchpads[] = {
@@ -437,7 +444,7 @@ static char tagicons[][NUMTAGS][MAX_TAGLEN] =
 static char *tagicons[][NUMTAGS] =
 #endif // NAMETAG_PATCH
 {
-	[DEFAULT_TAGS]        = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+	[DEFAULT_TAGS]        = { "", "", "", "", "", "", "", "", "" },
 	[ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E", "F", "G", "H", "I" },
 	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
 };
@@ -485,10 +492,9 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "UTILITY", .isfloating = 1)
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
-	RULE(.class = "Gimp", .tags = 1 << 4)
-	RULE(.class = "Firefox", .tags = 1 << 7)
+	RULE(.instance = "anydesk", .tags = 1 << 8)
 	#if RENAMED_SCRATCHPADS_PATCH
-	RULE(.instance = "spterm", .scratchkey = 's', .isfloating = 1)
+	RULE(.instance = "spnmtui", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH

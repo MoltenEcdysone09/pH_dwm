@@ -53,12 +53,12 @@ static const int toptab                  = False;               /* False means b
 static const int bar_height              = 0;   /* 0 means derive from font, >= 1 explicit height */
 #endif // BAR_HEIGHT_PATCH
 #if BAR_PADDING_PATCH
-static const int vertpad                 = 10;  /* vertical padding of bar */
-static const int sidepad                 = 10;  /* horizontal padding of bar */
+static const int vertpad                 = 0;  /* vertical padding of bar */
+static const int sidepad                 = 0;  /* horizontal padding of bar */
 #endif // BAR_PADDING_PATCH
 #if BAR_WINICON_PATCH
-#define ICONSIZE 20    /* icon size */
-#define ICONSPACING 5  /* space between icon and title */
+#define ICONSIZE bh    /* icon size */
+#define ICONSPACING (bh -4)  /* space between icon and title */
 #endif // BAR_WINICON_PATCH
 #if FOCUSONCLICK_PATCH
 static const int focusonwheel            = 0;
@@ -404,10 +404,14 @@ static const char *const autostart[] = {
 #if RENAMED_SCRATCHPADS_PATCH
 static const char *scratchpadcmd[] = {"s", "st", "-n", "spnmtui", "-e", "nmtui", NULL};
 #elif SCRATCHPADS_PATCH
-const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd1[] = {"st", "-n", "spnmtui", "-e", "nmtui", NULL};
+const char *spcmd2[] = {"st", "-n", "spalsam", "-e", "alsamixer", NULL};
+const char *spcmd3[] = {"st", "-n", "sphtop", "-e", "htop", NULL};
 static Sp scratchpads[] = {
    /* name          cmd  */
-   {"spterm",      spcmd1},
+   {"spnmtui",      spcmd1},
+   {"spalsam",      spcmd2},
+   {"sphtop",      spcmd3},
 };
 #endif // SCRATCHPADS_PATCH
 
@@ -496,7 +500,9 @@ static const Rule rules[] = {
 	#if RENAMED_SCRATCHPADS_PATCH
 	RULE(.instance = "spnmtui", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
-	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
+	RULE(.instance = "spnmtui", .tags = SPTAG(0), .isfloating = 1)
+	RULE(.instance = "spalsam", .tags = SPTAG(1), .isfloating = 1)
+	RULE(.instance = "sphtop", .tags = SPTAG(2), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH
 };
 
@@ -712,11 +718,11 @@ static const Layout layouts[] = {
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	#if TILE_LAYOUT
-	{ "[]=",      tile },    /* first entry is default */
+	{ "",      tile },    /* first entry is default */
 	#endif
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "",      NULL },    /* no layout function means floating behavior */
 	#if MONOCLE_LAYOUT
-	{ "[M]",      monocle },
+	{ "",      monocle },
 	#endif
 	#if BSTACK_LAYOUT
 	{ "TTT",      bstack },
@@ -1101,7 +1107,10 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_grave,      setscratch,             {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_grave,      removescratch,          {.v = scratchpadcmd } },
 	#elif SCRATCHPADS_PATCH
-	{ MODKEY,                       XK_grave,      togglescratch,          {.ui = 0 } },
+	{ MODKEY|Mod1Mask,             XK_w,          togglescratch,          {.ui = 0 } },
+	{ MODKEY|Mod1Mask,             XK_v,          togglescratch,          {.ui = 1 } },
+	{ MODKEY|Mod1Mask,             XK_c,          togglescratch,          {.ui = 2 } },
+	//{ MODKEY,                       XK_grave,      togglescratch,          {.ui = 0 } },
 	{ MODKEY|ControlMask,           XK_grave,      setscratch,             {.ui = 0 } },
 	{ MODKEY|ShiftMask,             XK_grave,      removescratch,          {.ui = 0 } },
 	#endif // SCRATCHPADS_PATCH | RENAMED_SCRATCHPADS_PATCH
