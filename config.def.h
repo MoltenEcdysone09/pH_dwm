@@ -629,7 +629,7 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int nstack      = 0;    /* number of clients in primary stack area */
 #endif // FLEXTILE_DELUXE_LAYOUT
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 #if DECORATION_HINTS_PATCH
 static const int decorhints  = 1;    /* 1 means respect decoration hints */
 #endif // DECORATION_HINTS_PATCH
@@ -1119,13 +1119,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_t,          unfloatvisible,         {.v = &layouts[0]} },
 	#endif // UNFLOATVISIBLE_PATCH
 	#if TOGGLEFULLSCREEN_PATCH
-	{ MODKEY,                       XK_y,          togglefullscreen,       {0} },
+	{ MODKEY,                       XK_f,          togglefullscreen,       {0} },
 	#endif // TOGGLEFULLSCREEN_PATCH
 	#if !FAKEFULLSCREEN_PATCH && FAKEFULLSCREEN_CLIENT_PATCH
 	{ MODKEY|ShiftMask,             XK_y,          togglefakefullscreen,   {0} },
 	#endif // FAKEFULLSCREEN_CLIENT_PATCH
 	#if FULLSCREEN_PATCH
-	{ MODKEY|ShiftMask,             XK_f,          fullscreen,             {0} },
+	{ MODKEY|ShiftMask,             XK_f,          fullscreen,       {0} },
 	#endif // FULLSCREEN_PATCH
 	#if STICKY_PATCH
 	{ MODKEY|ShiftMask,             XK_s,          togglesticky,           {0} },

@@ -561,7 +561,7 @@
  * like chromium (with "Use system title bar and borders" turned off) or vlc in fullscreen mode.
  * https://dwm.suckless.org/patches/decoration_hints/
  */
-#define DECORATION_HINTS_PATCH 0
+#define DECORATION_HINTS_PATCH 1
 
 /* This feature distributes all clients on the current monitor evenly across all tags.
  * It is a variant of the reorganizetags patch.
@@ -677,7 +677,7 @@
  * again it shows the bar and restores the layout that was active before going fullscreen.
  * https://dwm.suckless.org/patches/fullscreen/
  */
-#define FULLSCREEN_PATCH 0
+#define FULLSCREEN_PATCH 1
 
 /* This patch provides a keybinding to rotate all clients in the currently selected
  * area (master or stack) without affecting the other area.
@@ -869,7 +869,7 @@
  * monitor (default).
  * https://dwm.suckless.org/patches/pertag/
  */
-#define PERTAG_PATCH 0
+#define PERTAG_PATCH 1
 
 /* Option to store gaps on a per tag basis rather than on a per monitor basis.
  * Depends on both pertag and vanitygaps patches being enabled.
@@ -1250,7 +1250,7 @@
 /* This patch allows you to toggle fullscreen on and off using a single shortcut key.
  * https://github.com/bakkeby/patches/blob/master/dwm/dwm-togglefullscreen-6.2.diff
  */
-#define TOGGLEFULLSCREEN_PATCH 0
+#define TOGGLEFULLSCREEN_PATCH 1
 
 /* Minor patch that lets you use the same keyboard shortcut to toggle to the previous layout if the
  * designated layout is already active.
