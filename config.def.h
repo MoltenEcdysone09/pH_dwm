@@ -497,6 +497,7 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 	RULE(.instance = "anydesk", .tags = 1 << 8)
+	RULE(.instance = "rustdesk", .tags = 1 << 8)
 	#if RENAMED_SCRATCHPADS_PATCH
 	RULE(.instance = "spnmtui", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
