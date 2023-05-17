@@ -1,4 +1,6 @@
 /* See LICENSE file for copyright and license details. */
+/* Include the X86 key definitions */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 #if ROUNDED_CORNERS_PATCH
@@ -91,7 +93,7 @@ static const int vertpadbar              = 0;   /* vertical padding for statusba
 static const char buttonbar[]            = "<O>";
 #endif // BAR_STATUSBUTTON_PATCH
 #if BAR_SYSTRAY_PATCH
-static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const unsigned int systrayspacing = 1;   /* systray spacing */
 static const int showsystray             = 1;   /* 0 means no systray */
 #endif // BAR_SYSTRAY_PATCH
 #if BAR_TAGLABELS_PATCH
@@ -146,9 +148,9 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #if BAR_PANGO_PATCH
 static const char font[]                 = "monospace 10";
 #else
-static const char *fonts[]               = {"RobotoMono Nerd Font Mono:style=Medium:size=13:antialias=true:autohint=true"};
+static const char *fonts[]               = {"RobotoMono Nerd Font Mono:style=Medium:size=14:antialias=true:autohint=true"};
 #endif // BAR_PANGO_PATCH
-static const char dmenufont[]            = "RobotoMono Nerd Font Mono:style=Medium:size=12:antialias=true:autohint=true";
+static const char dmenufont[]            = "RobotoMono Nerd Font Mono:style=Medium:size=15:antialias=true:autohint=true";
 
 // REPLACED the below code with a C file (include ...) for easier theme cahnging
 //
@@ -393,10 +395,12 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
     /*"xrdb", "-merge", " -I$HOME" , "~/.Xresources", NULL,*/
-    "feh", "--bg-scale", "Pictures/WallPaper/52.png", NULL,
+    "sh", "setWall.sh", NULL,
     "alacritty", NULL,
     "picom", NULL,
     "flameshot", NULL,
+    "sh", "touchpad_click.sh", NULL,
+    "light", "-N", "4", NULL,
     NULL /* terminate */
 };
 #endif // COOL_AUTOSTART_PATCH
@@ -881,6 +885,8 @@ static const char *dmenucmd[] = {
     NULL
 };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char *incBrightCMD[]  = { "light", "-A", "2", NULL };
+static const char *decBrightCMD[]  = { "light", "-U", "2", NULL };
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
@@ -917,6 +923,8 @@ static Key keys[] = {
     { MODKEY,                       XK_d,          spawn,                  {.v = dmenucmd } },
     { MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
     { MODKEY,                       XK_w,          spawn,                  {.v = firefoxcmd } },
+    { MODKEY,                       XF86XK_MonBrightnessDown,          spawn,                  {.v = decBrightCMD } },
+    { MODKEY,                       XF86XK_MonBrightnessUp,          spawn,                  {.v = incBrightCMD } },
 #if RIODRAW_PATCH
     { MODKEY|ControlMask,           XK_p,          riospawnsync,           {.v = dmenucmd } },
     { MODKEY|ControlMask,           XK_Return,     riospawn,               {.v = termcmd } },
