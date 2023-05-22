@@ -401,7 +401,7 @@ static const char *const autostart[] = {
     "flameshot", NULL,
     "sh", "touchpad_click.sh", NULL,
     "light", "-N", "4", NULL,
-    "dwmblocks", NULL,
+    "sh", "dwmb.sh", NULL,
     NULL /* terminate */
 };
 #endif // COOL_AUTOSTART_PATCH
