@@ -9,4 +9,4 @@ case $BLOCK_BUTTON in
 	6) "st" -e "code" "$0" ;;
 esac
 
-free --mebi | sed -n '2{p;q}' | awk '{printf ("[%2.2fGiB]\n", ( $3 / 1024))}'
+free --mebi | sed -n '2{p;q}' | awk '{printf ("[ %2.2f GiB]\n", ( $3 / 1024))}'

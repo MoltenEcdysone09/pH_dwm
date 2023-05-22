@@ -10,7 +10,7 @@ crit=70 # critical temperature
 temp=$(sensors | grep "Package id 0:" | cut -d " " -f 5 | cut -d "+" -f 2 | cut -d "." -f 1)
 
 if [ "$temp" -lt "$crit" ] ; then
-    echo "$ICONn$temp°C"
+    echo "[$ICONn$temp°C]"
 else
-    echo "$ICONc$temp°C"
+    echo "[$ICONc$temp°C]"
 fi

@@ -10,14 +10,11 @@ dwm_battery () {
     STATUS=$(cat /sys/class/power_supply/BAT0/status)
 
     printf "%s" "$SEP1"
-    if [ "$IDENTIFIER" = "unicode" ]; then
-        if [ "$STATUS" = "Charging" ]; then
-            printf "\udb80\udc84  %s%% %s" "$CHARGE"
-        else
-            printf " %s%% %s" "$CHARGE"
-        fi
+    #if [ "$IDENTIFIER" = "unicode" ]; then
+    if [ "$STATUS" = "Charging" ]; then
+        printf "[󱊦 %s%%%s]" "$CHARGE"
     else
-        printf "󱊤 %s%% %s" "$CHARGE"
+        printf "[󱊣 %s%%%s]" "$CHARGE"
     fi
     printf "%s\n" "$SEP2"
 }
