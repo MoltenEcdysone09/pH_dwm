@@ -20,8 +20,10 @@ update() {
 }
 
 rx=$(update /sys/class/net/[ew]*/statistics/rx_bytes)
+echo $rx
 tx=$(update /sys/class/net/[ew]*/statistics/tx_bytes)
+echo $tx
 
 #printf "󰈀 %4sB%4sB" $(numfmt --to=iec $rx) $(numfmt --to=iec $tx)
-printf "[󰈀 %4sB%4sB]" $(numfmt --to=si $rx) $(numfmt --to=iec $tx)
+printf "󰈀 %4sB%4sB" $(numfmt --to=eic $rx) $(numfmt --to=iec $tx)
 #printf "[ %4sB] \\n" $(numfmt --to=iec $rx) 
