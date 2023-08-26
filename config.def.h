@@ -413,12 +413,14 @@ const char *spcmd1[] = {"st", "-n", "spnmtui", "-e", "nmtui", NULL};
 const char *spcmd2[] = {"st", "-n", "spalsam", "-e", "alsamixer", NULL};
 const char *spcmd3[] = {"st", "-n", "sphtop", "-e", "htop", NULL};
 const char *spcmd4[] = {"st", "-n", "spterm", NULL};
+const char *spcmd5[] = {"spotify-launcher", NULL};
 static Sp scratchpads[] = {
     /* name          cmd  */
     {"spnmtui",      spcmd1},
     {"spalsam",      spcmd2},
     {"sphtop",      spcmd3},
     {"spterm",      spcmd4},
+    {"spotify",      spcmd5},
 };
 #endif // SCRATCHPADS_PATCH
 
@@ -514,6 +516,7 @@ static const Rule rules[] = {
         RULE(.instance = "spalsam", .tags = SPTAG(1), .isfloating = 1)
         RULE(.instance = "sphtop", .tags = SPTAG(2), .isfloating = 1)
         RULE(.instance = "spterm", .tags = SPTAG(3), .isfloating = 1)
+        RULE(.instance = "spotify", .tags = SPTAG(4), .isfloating = 1)
 #endif // SCRATCHPADS_PATCH
 };
 
@@ -1130,6 +1133,7 @@ static Key keys[] = {
         { MODKEY|Mod1Mask,             XK_v,          togglescratch,          {.ui = 1 } },
         { MODKEY|Mod1Mask,             XK_c,          togglescratch,          {.ui = 2 } },
         { MODKEY|Mod1Mask,             XK_t,          togglescratch,          {.ui = 3 } },
+        { MODKEY|Mod1Mask,             XK_s,          togglescratch,          {.ui = 4 } },
         //{ MODKEY,                       XK_grave,      togglescratch,          {.ui = 0 } },
         { MODKEY|ControlMask,           XK_grave,      setscratch,             {.ui = 0 } },
         { MODKEY|ShiftMask,             XK_grave,      removescratch,          {.ui = 0 } },

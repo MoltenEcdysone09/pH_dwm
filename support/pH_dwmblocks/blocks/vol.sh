@@ -8,8 +8,8 @@
 
 #Statusbar Script
 #voll=$(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }')
-vllv=$(amixer sget Master | awk -F"[][]" '/dB/ { print $2 }' | cut -d "%" -f 1)
-vlst=$(amixer sget Master | awk -F"[][]" '/dB/ { print $6 }')
+vllv=$(amixer sget Master | grep "Left:" | awk -F '[][]' '{print $2}')
+vlst=$(amixer sget Master | grep "Left:" | awk -F '[][]' '{print $4}')
 if [[ "$vlst" == "off" ]] ; then
     echo "[󰝟 $vllv]"
 else

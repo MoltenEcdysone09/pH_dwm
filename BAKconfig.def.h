@@ -146,11 +146,11 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #endif // MONOCLE_LAYOUT
 #endif // BAR_TABGROUPS_PATCH
 #if BAR_PANGO_PATCH
-static const char font[]                 = "monospace 10";
+static const char font[]                 = "monospace 11";
 #else
-static const char *fonts[]               = {"RobotoMono Nerd Font:style=Medium:size=14:antialias=true:autohint=true"};
+static const char *fonts[]               = {"RobotoMono Nerd Font:style=Medium:size=11:antialias=true:autohint=true"};
 #endif // BAR_PANGO_PATCH
-static const char dmenufont[]            = "RobotoMono Nerd Font:style=Medium:size=15:antialias=true:autohint=true";
+static const char dmenufont[]            = "RobotoMono Nerd Font:style=Medium:size=12:antialias=true:autohint=true";
 
 // REPLACED the below code with a C file (include ...) for easier theme cahnging
 //
@@ -413,12 +413,14 @@ const char *spcmd1[] = {"st", "-n", "spnmtui", "-e", "nmtui", NULL};
 const char *spcmd2[] = {"st", "-n", "spalsam", "-e", "alsamixer", NULL};
 const char *spcmd3[] = {"st", "-n", "sphtop", "-e", "htop", NULL};
 const char *spcmd4[] = {"st", "-n", "spterm", NULL};
+const char *spcmd4[] = {"spotify-launcher", NULL};
 static Sp scratchpads[] = {
     /* name          cmd  */
     {"spnmtui",      spcmd1},
     {"spalsam",      spcmd2},
     {"sphtop",      spcmd3},
     {"spterm",      spcmd4},
+    {"spotify",      spcmd4},
 };
 #endif // SCRATCHPADS_PATCH
 
@@ -455,7 +457,8 @@ static char tagicons[][NUMTAGS][MAX_TAGLEN] =
 static char *tagicons[][NUMTAGS] =
 #endif // NAMETAG_PATCH
 {
-    [DEFAULT_TAGS]        = { "", "", "", "", "", "", "", "", "" },
+    [DEFAULT_TAGS]        = { "󰎤", "󰎧", "󰎪", "󰎭", "󰎱", "󰎳", "󰎶", "󰎹", "󰎼"},
+    //[DEFAULT_TAGS]        = { "1", "2", "3", "4", "5", "6", "7", "8", "9"},
     [ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E", "F", "G", "H", "I" },
     [ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
 };
@@ -513,6 +516,7 @@ static const Rule rules[] = {
         RULE(.instance = "spalsam", .tags = SPTAG(1), .isfloating = 1)
         RULE(.instance = "sphtop", .tags = SPTAG(2), .isfloating = 1)
         RULE(.instance = "spterm", .tags = SPTAG(3), .isfloating = 1)
+        RULE(.instance = "spotify", .tags = SPTAG(4), .isfloating = 1)
 #endif // SCRATCHPADS_PATCH
 };
 
@@ -889,6 +893,7 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *incBrightCMD[]  = { "light", "-A", "2", NULL };
 static const char *decBrightCMD[]  = { "light", "-U", "2", NULL };
 static const char *getGitToken[] = { "./gtcp.sh", NULL};
+static const char *slockcmd[] = {"slock", NULL};
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
@@ -928,6 +933,7 @@ static Key keys[] = {
     { MODKEY,                       XF86XK_MonBrightnessDown,          spawn,                  {.v = decBrightCMD } },
     { MODKEY,                       XF86XK_MonBrightnessUp,          spawn,                  {.v = incBrightCMD } },
     { MODKEY|ControlMask,           XK_g,          spawn,                  {.v = getGitToken} },
+    { MODKEY|ControlMask,           XK_s,          spawn,                  {.v = slockcmd} },
 #if RIODRAW_PATCH
     { MODKEY|ControlMask,           XK_p,          riospawnsync,           {.v = dmenucmd } },
     { MODKEY|ControlMask,           XK_Return,     riospawn,               {.v = termcmd } },
@@ -1127,6 +1133,7 @@ static Key keys[] = {
         { MODKEY|Mod1Mask,             XK_v,          togglescratch,          {.ui = 1 } },
         { MODKEY|Mod1Mask,             XK_c,          togglescratch,          {.ui = 2 } },
         { MODKEY|Mod1Mask,             XK_t,          togglescratch,          {.ui = 3 } },
+        { MODKEY|Mod1Mask,             XK_s,          togglescratch,          {.ui = 4 } },
         //{ MODKEY,                       XK_grave,      togglescratch,          {.ui = 0 } },
         { MODKEY|ControlMask,           XK_grave,      setscratch,             {.ui = 0 } },
         { MODKEY|ShiftMask,             XK_grave,      removescratch,          {.ui = 0 } },
