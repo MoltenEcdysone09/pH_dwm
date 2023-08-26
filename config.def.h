@@ -507,6 +507,7 @@ static const Rule rules[] = {
         RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
         RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
         RULE(.instance = "matplotlib", .isfloating = 1)
+        RULE(.instance = "spotify", .isfloating = 1)
         RULE(.instance = "anydesk", .tags = 1 << 8)
         RULE(.instance = "rustdesk", .tags = 1 << 8)
 #if RENAMED_SCRATCHPADS_PATCH

@@ -413,14 +413,14 @@ const char *spcmd1[] = {"st", "-n", "spnmtui", "-e", "nmtui", NULL};
 const char *spcmd2[] = {"st", "-n", "spalsam", "-e", "alsamixer", NULL};
 const char *spcmd3[] = {"st", "-n", "sphtop", "-e", "htop", NULL};
 const char *spcmd4[] = {"st", "-n", "spterm", NULL};
-const char *spcmd4[] = {"spotify-launcher", NULL};
+const char *spcmd5[] = {"spotify-launcher", NULL};
 static Sp scratchpads[] = {
     /* name          cmd  */
     {"spnmtui",      spcmd1},
     {"spalsam",      spcmd2},
     {"sphtop",      spcmd3},
     {"spterm",      spcmd4},
-    {"spotify",      spcmd4},
+    {"spotify",      spcmd5},
 };
 #endif // SCRATCHPADS_PATCH
 
@@ -507,6 +507,7 @@ static const Rule rules[] = {
         RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
         RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
         RULE(.instance = "matplotlib", .isfloating = 1)
+        RULE(.instance = "spotify", .isfloating = 1)
         RULE(.instance = "anydesk", .tags = 1 << 8)
         RULE(.instance = "rustdesk", .tags = 1 << 8)
 #if RENAMED_SCRATCHPADS_PATCH
