@@ -395,7 +395,7 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
     /*"xrdb", "-merge", " -I$HOME" , "~/.Xresources", NULL,*/
-    "xautolock", "-time", "5", "-locker", "slock", "-nowlocker", "slock", "-detectsleep", "-corners", "000+", "-cornerdelay", "1", "&", NULL,
+    "xautolock", "-time", "5", "-locker", "slock", "-nowlocker", "slock", "-detectsleep", "-corners", "000+", "-cornerdelay", "1", NULL,
     "picom", NULL,
     "sh", "setWall.sh", NULL,
     "alacritty", NULL,
