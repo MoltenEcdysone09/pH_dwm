@@ -22,3 +22,8 @@ Afterwards enter the following command to build and install slock
 Running slock
 -------------
 Simply invoke the 'slock' command. To get out of it, enter your password.
+
+
+Autolock Feature
+----------------
+Implimented using xautolock. Locks after a period of inactivity and also if the cursor is taken to a corner and stays there. 
