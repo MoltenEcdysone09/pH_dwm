@@ -395,7 +395,7 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
     /*"xrdb", "-merge", " -I$HOME" , "~/.Xresources", NULL,*/
-    "xautolock", "-time", "5", "-locker", "slock", "-nowlocker", "slock", "-detectsleep", "-corners", "000+", "-cornerdelay", "1", NULL,
+    "xautolock", "-time", "5", "-locker", "slock", "-nowlocker", "slock", "-detectsleep", "-corners", "---+", "-cornerdelay", "1", "-cornersize", "30", NULL,
     "picom", NULL,
     "sh", "setWall.sh", NULL,
     "alacritty", NULL,
@@ -741,7 +741,7 @@ static const Layout layouts[] = {
     { "",      monocle },
 #endif
 #if BSTACK_LAYOUT
-    { "TTT",      bstack },
+    { "󰽐",      bstack },
 #endif
 #if BSTACKHORIZ_LAYOUT
     { "===",      bstackhoriz },
@@ -1083,7 +1083,7 @@ static Key keys[] = {
 #endif // SELFRESTART_PATCH
         { MODKEY|ShiftMask,             XK_q,          quit,                   {0} },
 #if RESTARTSIG_PATCH
-        { MODKEY|ControlMask|ShiftMask, XK_q,          quit,                   {1} },
+        { MODKEY|ControlMask|ShiftMask, XK_r,          quit,                   {1} },
 #endif // RESTARTSIG_PATCH
 #if FOCUSURGENT_PATCH
         { MODKEY,                       XK_u,          focusurgent,            {0} },
@@ -1100,6 +1100,7 @@ static Key keys[] = {
         { MODKEY,                       XK_t,          setlayout,              {.v = &layouts[0]} },
         { MODKEY,                       XK_f,          setlayout,              {.v = &layouts[1]} },
         { MODKEY,                       XK_m,          setlayout,              {.v = &layouts[2]} },
+        { MODKEY,                       XK_o,          setlayout,              {.v = &layouts[3]} },
 #if COLUMNS_LAYOUT
         { MODKEY|ShiftMask,             XK_c,          setlayout,              {.v = &layouts[3]} },
 #endif // COLUMNS_LAYOUT

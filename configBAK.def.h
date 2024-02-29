@@ -395,7 +395,7 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
     /*"xrdb", "-merge", " -I$HOME" , "~/.Xresources", NULL,*/
-    "xautolock", "-time", "5", "-locker", "slock", "-nowlocker", "slock", "-detectsleep", "-corners", "000+", "-cornerdelay", "2", "&", NULL,
+    "xautolock", "-time", "5", "-locker", "slock", "-nowlocker", "slock", "-detectsleep", "-corners", "---+", "-cornerdelay", "1", "-cornersize", "30", NULL,
     "picom", NULL,
     "sh", "setWall.sh", NULL,
     "alacritty", NULL,
@@ -1100,6 +1100,7 @@ static Key keys[] = {
         { MODKEY,                       XK_t,          setlayout,              {.v = &layouts[0]} },
         { MODKEY,                       XK_f,          setlayout,              {.v = &layouts[1]} },
         { MODKEY,                       XK_m,          setlayout,              {.v = &layouts[2]} },
+        { MODKEY,                       XK_o,          setlayout,              {.v = &layouts[3]} },
 #if COLUMNS_LAYOUT
         { MODKEY|ShiftMask,             XK_c,          setlayout,              {.v = &layouts[3]} },
 #endif // COLUMNS_LAYOUT
