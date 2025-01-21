@@ -403,6 +403,7 @@ static const char *const autostart[] = {
     "sh", "touchpad_click.sh", NULL,
     "light", "-N", "4", NULL,
     "sh", "dwmb.sh", NULL,
+    "zotero", NULL,
     NULL /* terminate */
 };
 #endif // COOL_AUTOSTART_PATCH
@@ -415,6 +416,7 @@ const char *spcmd2[] = {"st", "-n", "spalsam", "-e", "alsamixer", NULL};
 const char *spcmd3[] = {"st", "-n", "sphtop", "-e", "htop", NULL};
 const char *spcmd4[] = {"st", "-n", "spterm", NULL};
 const char *spcmd5[] = {"spotify-launcher", NULL};
+const char *spcmd6[] = {"youtube-music", NULL};
 static Sp scratchpads[] = {
     /* name          cmd  */
     {"spnmtui",      spcmd1},
@@ -422,6 +424,7 @@ static Sp scratchpads[] = {
     {"sphtop",      spcmd3},
     {"spterm",      spcmd4},
     {"spotify",      spcmd5},
+    {"youtube-music",      spcmd6},
 };
 #endif // SCRATCHPADS_PATCH
 
@@ -509,8 +512,8 @@ static const Rule rules[] = {
         RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
         RULE(.instance = "matplotlib", .isfloating = 1)
         RULE(.instance = "spotify", .isfloating = 1)
-        RULE(.instance = "anydesk", .tags = 1 << 8)
-        RULE(.instance = "rustdesk", .tags = 1 << 8)
+        RULE(.instance = "youtube music", .isfloating = 1)
+        RULE(.class = "Zotero", .tags = 1 << 8)
 #if RENAMED_SCRATCHPADS_PATCH
         RULE(.instance = "spnmtui", .scratchkey = 's', .isfloating = 1)
 #elif SCRATCHPADS_PATCH
@@ -519,6 +522,7 @@ static const Rule rules[] = {
         RULE(.instance = "sphtop", .tags = SPTAG(2), .isfloating = 1)
         RULE(.instance = "spterm", .tags = SPTAG(3), .isfloating = 1)
         RULE(.instance = "spotify", .tags = SPTAG(4), .isfloating = 1)
+        RULE(.instance = "youtube music", .tags = SPTAG(5), .isfloating = 1)
 #endif // SCRATCHPADS_PATCH
 };
 
@@ -1137,6 +1141,7 @@ static Key keys[] = {
         { MODKEY|Mod1Mask,             XK_c,          togglescratch,          {.ui = 2 } },
         { MODKEY|Mod1Mask,             XK_t,          togglescratch,          {.ui = 3 } },
         { MODKEY|Mod1Mask,             XK_s,          togglescratch,          {.ui = 4 } },
+        { MODKEY|Mod1Mask,             XK_y,          togglescratch,          {.ui = 5 } },
         //{ MODKEY,                       XK_grave,      togglescratch,          {.ui = 0 } },
         { MODKEY|ControlMask,           XK_grave,      setscratch,             {.ui = 0 } },
         { MODKEY|ShiftMask,             XK_grave,      removescratch,          {.ui = 0 } },
